@@ -1,0 +1,13 @@
+@font-face {
+	font-family : 'HS';
+	src : url('font\\HS.ttf');
+}
+
+* {font-family : 'HS';}
+
+div[class="header"] {
+	background-color: rgb(255, 254, 237);
+	height:80px;
+	font-weight: bolder;
+	border: 1px dotted #2EE59D;
+}

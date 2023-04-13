@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>슬기로운 대학생활 main</title>
+		<link rel="stylesheet" href="../jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+		<script src="../jquery.mobile/jquery-1.11.1.min.js"></script>
+		<script src="../jquery.mobile/jquery.mobile-1.4.5.min.js"></script>	
+		<link rel="stylesheet" href="../css\font_setting.css" media=all>
+		<link rel="stylesheet" href="../css\index_button.css" media=all>
+		<script>
+			function default_money() {
+				var get_money = localStorage.getItem('get_money');
+
+				if (!get_money) {
+					localStorage.setItem('money', 300000);
+					get_money = true;
+					localStorage.setItem('get_money', get_money);
+				}
+			}
+			
+			function close_windows() {
+				var ok = confirm("게임을 종료합니다.");
+				if (ok == true) {
+					 navigator.app.exitApp();
+				}
+			}
+			
+			function check_name() {
+				var name = document.getElementById('name').value;
+				var old = document.getElementById('old').value;
+				
+				if (name.length == 0 || old.length == 0) {
+					var ok = confirm("기본 이름과 나이로 하시겠습니까?");
+					if (ok == true) {
+						localStorage.setItem('name', "김이현");
+						localStorage.setItem('old', 20);
+						localStorage.setItem('real_old', 20);
+						location.href = "first.html";
+					}
+				}	
+				else {
+					localStorage.setItem('name', name);
+					localStorage.setItem('old', old);
+					localStorage.setItem('real_old', old);
+					location.href = "first.html";
+				}
+			}
+			
+			default_money();
+		</script>
+		<style>
+			#index {
+				background-image : url("../image\index.jpg");	
+				background-repeat : no-repeat;
+				z-index : 0;
+			}
+			.option {
+				position : fixed;
+				bottom : 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div data-role="page" id="start">
+			<div data-role="content">
+				<div class="text" style="text-align:center; font-size:30px;">
+					<script src="..\js\index.js"></script>
+				</div><br/><br/>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<a href="#" data-rel="back" data-role="button" style="margin:10px;">뒤로가기</a>
+			</div>
+		</div>
+	</body>
+</html>

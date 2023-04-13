@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Option</title>
+		<link rel="stylesheet" href="../jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+		<script src="../jquery.mobile/jquery-1.11.1.min.js"></script>
+		<script src="../jquery.mobile/jquery.mobile-1.4.5.min.js"></script>	
+		<script src="../js/Save_System.js"></script>
+		<link rel="stylesheet" href="../css\font_setting.css" media=all>
+		<link rel="stylesheet" href="../css\index_button.css" media=all>
+		<script>
+			function main_return() {
+				var ok = confirm("메인화면으로 돌아갑니다.");
+				if (ok == true) {
+					clear_file();
+					location.href = '../index.html';
+				}
+			}
+			
+			function close_windows() {
+				var ok = confirm("게임을 종료합니다.");
+				if (ok == true) {
+					clear_file();
+					 navigator.app.exitApp();
+				}
+			}
+			
+			function confirm_file() {
+				var convert1 = localStorage.getItem('convert1');
+				var convert2 = localStorage.getItem('convert2');
+				var convert3 = localStorage.getItem('convert3');
+				var convert4 = localStorage.getItem('convert4');
+				
+				if (convert1 == null) {
+					$('.file1').html('<a onclick="file_save(1);">파일이 존재하지 않습니다.</a>');
+					$('.file1').css({'border':'3px solid black', 'padding':'30px'});
+				}
+				else if (convert1 != null) {
+					$('.file1').html('<a onclick="file_open(1);">파일 1</a>');
+					$('.file1').css({'border':'4px solid black', 'padding':'30px'});
+				}
+				if (convert2 == null) {
+					$('.file2').html('<a onclick="file_save(2);">파일이 존재하지 않습니다.</a>');
+					$('.file2').css({'border':'3px solid black', 'padding':'30px'});
+				}
+				else if (convert2 != null) {
+					$('.file2').html('<a onclick="file_open(2);">파일 2</a>');
+					$('.file2').css({'border':'4px solid black', 'padding':'30px'});
+				}
+				if (convert3 == null) {
+					$('.file3').html('<a onclick="file_save(3);">파일이 존재하지 않습니다.</a>');
+					$('.file3').css({'border':'3px solid black', 'padding':'30px'});
+				}
+				else if (convert3 != null) {
+					$('.file3').html('<a onclick="file_open(3);">파일 3</a>');
+					$('.file3').css({'border':'4px solid black', 'padding':'30px'});
+				}
+				if (convert4 == null) {
+					$('.file4').html('<a onclick="file_save(4);">파일이 존재하지 않습니다.</a>');
+					$('.file4').css({'border':'3px solid black', 'padding':'30px'});
+				}
+				else if (convert4 != null) {
+					$('.file4').html('<a onclick="file_open(4);">파일 4</a>');
+					$('.file4').css({'border':'4px solid black', 'padding':'30px'});
+				}
+			}
+			
+			function file_save(value) {
+				var ok = confirm("파일을 이곳에 덮어씁니다.");
+				if (ok == true) {
+					convert_file(value);
+					confirm_file();
+				}
+			}
+			
+			function file_open(value) {
+				var ok = confirm("파일을 엽니다.");
+				if (ok == true) {
+					clear_file();
+					decomposition_file(value);
+					
+					if (value == 1) {
+						var path = localStorage.getItem('convert1_path');
+						location.href = path;	
+					}
+					else if (value == 2) {
+						var path = localStorage.getItem('convert2_path');
+						location.href = path;
+					}
+					else if (value == 3) {
+						var path = localStorage.getItem('convert3_path');
+						location.href = path;	
+					}
+					else if (value == 4) {
+						var path = localStorage.getItem('convert4_path');
+						location.href = path;
+					}
+				}
+			}
+			
+			function format() {
+				var ok = confirm("4개 파일을 모두 초기화 합니다.");
+				if (ok == true) {
+					localStorage.removeItem('convert1');
+					localStorage.removeItem('convert1_path');
+					localStorage.removeItem('convert2');
+					localStorage.removeItem('convert2_path');
+					localStorage.removeItem('convert3');
+					localStorage.removeItem('convert3_path');
+					localStorage.removeItem('convert4');
+					localStorage.removeItem('convert4_path');
+					confirm_file();
+				}
+			}
+		</script>
+		<link rel="stylesheet" href="../css/font_setting.css" media=all>
+		<style>
+			img {
+				position : fixed;
+				top:60px;
+			}
+			#index {
+				background-image : url("..\image\option.jpg");	
+				background-repeat : repeat;
+				z-index : 0;
+			}
+			#save {
+				background-image : url("..\image\option.jpg");	
+				background-repeat : repeat;
+				z-index : 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div data-role="page" id="index">
+			<div data-role="content">
+				<h1 style="text-align:center;">Option</h1>
+				<img src="../image\line.png" height="80" width="450"><br/><br/><br/>
+				<div id="option">
+  					<a href="#" class="button" onclick="main_return();">메인으로</a>
+  					<a href="#save" class="button" onclick="confirm_file();">불러오기</a>
+  					<a href="../html/Collection.html" rel="external" class="button">컬렉션</a>
+  					<a href="#" class="button" onclick="close_windows();">게임종료</a>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<a href="#" data-rel="back" data-role="button" style="margin:10px;">뒤로가기</a>
+			</div>
+		</div>
+		<div data-role="page" id="save" data-position="fixed">
+			<div data-role="content">
+				<h1 style="text-align:center;">불러오기</h1>
+				<img src="../image\\line.png" height="80" width="450"><br/><br/><br/>
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<div class="file1"></div>
+					</div>
+					<div class="ui-block-b">
+						<div class="file2"></div>
+					</div>
+					<div class="ui-block-a">
+						<div class="file3"></div>
+					</div>
+					<div class="ui-block-b">
+						<div class="file4"></div>
+					</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<a href="#" data-rel="back" data-role="button" style="margin:10px;">뒤로가기</a>
+				<a style="margin:10px;" class="ui-btn-right" onclick="format();">파일 초기화</a>
+			</div>
+	</body>
+</html>

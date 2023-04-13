@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>슬기로운 대학생활 main</title>
+		<link rel="stylesheet" href="../jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+		<script src="../jquery.mobile/jquery-1.11.1.min.js"></script>
+		<script src="../jquery.mobile/jquery.mobile-1.4.5.min.js"></script>	
+		<link rel="stylesheet" href="../css\font_setting.css" media=all>
+		<script src="../js/Collection.js"></script>
+		<style>
+			#index {
+				background-image : url("..\\image\\option.jpg");	
+				background-repeat : repeat;
+				z-index : 0;
+			}
+			img {
+				float:left;
+				padding:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div data-role="page" id="index">
+			<div data-role="content">
+				<ul data-role="listview">
+					<li class="GangMinHee"></li>
+					<li class="FourMuri"></li>
+					<li class="Professor"></li>
+					<li class="JoYoonWoo"></li>
+					<li class="KimSeoHee"></li>
+					<li class="Test_Paper"></li>
+					<li class="HanX_Master"></li>
+					<li class="LeeMinSong"></li>
+					<li class="YoonJiHwan"></li>
+					<li class="SeoMinJeung"></li>
+				</ul>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<a href="#" data-rel="back" data-role="button" style="margin:10px;">뒤로가기</a>
+				<a href="#" class="ui-btn-right" onclick="clear_collection();">컬렉션 초기화</a>
+			</div>
+		</div>
+	</body>
