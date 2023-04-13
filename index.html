@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>슬기로운 대학생활 main</title>
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+		<script src="jquery.mobile/jquery-1.11.1.min.js"></script>
+		<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>	
+		<script src="../js/Save_System.js"></script>
+		<link rel="stylesheet" href="css\font_setting.css" media=all>
+		<link rel="stylesheet" href="css\index_button.css" media=all>
+		<script>
+			function close_windows() {
+				var ok = confirm("게임을 종료합니다.");
+				if (ok == true) {
+					 navigator.app.exitApp();
+				}
+			}
+			function format() {
+				var ok = confirm("4개 파일을 모두 초기화 합니다.");
+				if (ok == true) {
+					localStorage.removeItem('convert1');
+					localStorage.removeItem('convert1_path');
+					localStorage.removeItem('convert2');
+					localStorage.removeItem('convert2_path');
+					localStorage.removeItem('convert3');
+					localStorage.removeItem('convert3_path');
+					localStorage.removeItem('convert4');
+					localStorage.removeItem('convert4_path');
+					confirm_file();
+				}
+			}
+			function file_open(value) {
+				var ok = confirm("파일을 엽니다.");
+				if (ok == true) {
+					clear_file();
+					decomposition_file(value);
+					
+					if (value == 1) {
+						var path = localStorage.getItem('convert1_path');
+						location.href = path;	
+					}
+					else if (value == 2) {
+						var path = localStorage.getItem('convert2_path');
+						location.href = path;
+					}
+					else if (value == 3) {
+						var path = localStorage.getItem('convert3_path');
+						location.href = path;	
+					}
+					else if (value == 4) {
+						var path = localStorage.getItem('convert4_path');
+						location.href = path;
+					}
+				}
+			}
+			function confirm_file() {
+				var convert1 = localStorage.getItem('convert1');
+				var convert2 = localStorage.getItem('convert2');
+				var convert3 = localStorage.getItem('convert3');
+				var convert4 = localStorage.getItem('convert4');
+				
+				if (convert1 == null) {
+					$('.file1').html('<a onclick="file_save(1);">파일이 존재하지 않습니다.</a>');
+					$('.file1').css({'border':'3px solid black', 'padding':'30px'});
+				}
+				else if (convert1 != null) {
+					$('.file1').html('<a onclick="file_open(1);">파일 1</a>');
+					$('.file1').css({'border':'4px solid black', 'padding':'30px'});
+				}
+				if (convert2 == null) {
+					$('.file2').html('<a onclick="file_save(2);">파일이 존재하지 않습니다.</a>');
+					$('.file2').css({'border':'3px solid black', 'padding':'30px'});
+				}
+				else if (convert2 != null) {
+					$('.file2').html('<a onclick="file_open(2);">파일 2</a>');
+					$('.file2').css({'border':'4px solid black', 'padding':'30px'});
+				}
+				if (convert3 == null) {
+					$('.file3').html('<a onclick="file_save(3);">파일이 존재하지 않습니다.</a>');
+					$('.file3').css({'border':'3px solid black', 'padding':'30px'});
+				}
+				else if (convert3 != null) {
+					$('.file3').html('<a onclick="file_open(3);">파일 3</a>');
+					$('.file3').css({'border':'4px solid black', 'padding':'30px'});
+				}
+				if (convert4 == null) {
+					$('.file4').html('<a onclick="file_save(4);">파일이 존재하지 않습니다.</a>');
+					$('.file4').css({'border':'3px solid black', 'padding':'30px'});
+				}
+				else if (convert4 != null) {
+					$('.file4').html('<a onclick="file_open(4);">파일 4</a>');
+					$('.file4').css({'border':'4px solid black', 'padding':'30px'});
+				}
+			}
+			//localStorage.clear();
+		</script>
+		<style>
+			#index {
+				background-image : url("image\\index.jpg");	
+				background-repeat : no-repeat;
+				z-index : 0;
+			}
+			.option {
+				position : fixed;
+				bottom : 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div data-role="page" id="index">
+			<div data-role="content">
+				<div align="center" style="font-size:50px; padding:30px; text-shadow:3px 3px green;">슬기로운 대학생활</div><br>
+				<h3 style="text-align:center">집 밖을 나가지 못하는 당신, 대학 생활을 즐겨보아요.</h3>
+				<h5 style="text-align:center">feat. 그리고 당신의 정신연령은?</h5>
+				<div class="wrap">
+  					<a href="html/Start.html" class="button" data-transition="pop" rel="external">처음부터</a>
+  					<a href="#save" class="button" onclick="confirm_file();">불러오기</a>
+  					<a href="html/Collection.html" class="button" rel="external">컬렉션</a>
+  					<a href="#" class="button" onclick="close_windows();">종료</a>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="save" data-position="fixed">
+			<div data-role="content">
+				<h1 style="text-align:center;">불러오기</h1>
+				<img src="image\\line.png" height="80" width="450"><br/><br/><br/>
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<div class="file1"></div>
+					</div>
+					<div class="ui-block-b">
+						<div class="file2"></div>
+					</div>
+					<div class="ui-block-a">
+						<div class="file3"></div>
+					</div>
+					<div class="ui-block-b">
+						<div class="file4"></div>
+					</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<a href="#" data-rel="back" data-role="button" style="margin:10px;">뒤로가기</a>
+				<a style="margin:10px;" class="ui-btn-right" onclick="format();">파일 초기화</a>
+			</div>
+	</body>
+</html>
